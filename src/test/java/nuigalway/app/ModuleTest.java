@@ -27,7 +27,7 @@ public class ModuleTest {
     }
 
     @Test
-    public void moduleRegistersStudent() throws Exception {
+    public void moduleRegistersStudent() {
         firstModule.addStudent(students.get(0));
         ArrayList<Module> mod = students.get(0).getModules();
         assertTrue(mod.contains(firstModule));
@@ -40,7 +40,7 @@ public class ModuleTest {
     }
 
     @Test
-    public void getModuleEnrollments() throws Exception {
+    public void getModuleEnrollments() {
         firstModule.addStudent(students.get(0));
         firstModule.addStudent(students.get(1));
         firstModule.addStudent(students.get(2));
@@ -58,7 +58,7 @@ public class ModuleTest {
     }
 
     @Test
-    public void addDuplicateStudentException() throws Exception {
+    public void addDuplicateStudentException() throws RuntimeException {
         assertEquals(firstModule.getStudents().size(), 0);
         firstModule.addStudent(students.get(0));
         assertEquals(firstModule.getStudents().size(), 1);
@@ -69,7 +69,7 @@ public class ModuleTest {
     }
 
     @Test
-    public void removeAddStudents() throws Exception {
+    public void removeAddStudents() throws RuntimeException {
         firstModule.addStudents(students);
         assertEquals(firstModule.getStudents().size(), 4);
 

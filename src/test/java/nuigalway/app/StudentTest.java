@@ -18,17 +18,17 @@ public class StudentTest {
 		dob = LocalDate.of(1998, 10, 18);
 		student = new Student("Cathal", "Corbett", dob, "16321973"); 
 		course = new CourseProgramme("CS & IT", LocalDate.of(2019, 9, 1), LocalDate.of(2020, 5, 1));
-        module = new Module("Programming", "CT123");		
+        module = new Module("Programming", "CT123");
 	}
 
     @Test
-    public void getUsername() throws Exception {
+    public void getUsername() {
     	assertEquals(student.getAge(), 21);
         assertEquals(student.getUsername(), "CathalCorbett21");
     }
 
     @Test
-    public void addModuleCourse() throws Exception {
+    public void addModuleCourse() {
         
         student.addModule(module);
         student.addCourse(course);      
@@ -38,7 +38,7 @@ public class StudentTest {
     }
 
     @Test
-    public void testDateException() {
+    public void testDateException() throws RuntimeException {
     	try {
     		student.setDob(LocalDate.of(2020, 10, 18));
             fail("Error with dates");
