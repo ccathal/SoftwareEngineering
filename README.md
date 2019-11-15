@@ -1,2 +1,2 @@
 # SoftwareEnginnering
-Sample Repo for Git introduction.
+Java Student Enrollment System with JUnit testing & implemented with Shippable.
