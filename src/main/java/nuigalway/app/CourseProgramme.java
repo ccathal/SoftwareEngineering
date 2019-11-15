@@ -51,7 +51,7 @@ public class CourseProgramme {
     
     public void addModule(Module module) {   
         if (modules.contains(module)) {
-            throw new RuntimeException("module already registered for this course");
+            throw new RuntimeException("Module already registered for this course");
         } else {
         	modules.add(module);
         }
@@ -71,7 +71,7 @@ public class CourseProgramme {
 
     public void removeModule(Module module) {
     	if (!modules.contains(module)) {
-    		throw new RuntimeException("module has not been registered for this cpurse");
+    		throw new RuntimeException("Module has not been registered for this cpurse");
     	} else {
     		int index = modules.indexOf(module);
         	modules.remove(index);

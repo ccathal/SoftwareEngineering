@@ -75,16 +75,14 @@ public class Student {
     
     public void addModule(Module module) {   
         if (modules.contains(module)) {
-            throw new RuntimeException("module already registered for this student");
+            throw new RuntimeException("Module already registered for this student");
         } else {
         	modules.add(module);
         }
-        //module.addStudent(this);
     }
 
     public void addModules(ArrayList<Module> newModules) {
     	for (Module newModule : newModules) {
-    		//newModule.addStudent(this);
             if (modules.contains(newModule)) {
                 throw new RuntimeException("A module is already registered for this student");
             } else {
@@ -95,12 +93,11 @@ public class Student {
 
     public void removeModule(Module module) {
     	if (!modules.contains(module)) {
-    		throw new RuntimeException("module has not been registered for this student");
+    		throw new RuntimeException("Module has not been registered for this student");
     	} else {
     		int index = modules.indexOf(module);
         	modules.remove(index);
     	}
-		//module.removeStudent(this);
     }
 	
     public ArrayList<CourseProgramme> getCourse() {
@@ -109,7 +106,6 @@ public class Student {
 
     public void addCourses(ArrayList<CourseProgramme> newCourses) {
     	for (CourseProgramme newCourse : newCourses) {
-    		//newCourse.addStudent(this);
             if (courses.contains(newCourse)) {
                 throw new RuntimeException("A courses is already registered for this module");
             } else {
@@ -124,7 +120,6 @@ public class Student {
         } else {
         	courses.add(course);
         }
-    	//course.addStudent(this);
     }
 
     public void removeCourse(CourseProgramme course) {
@@ -134,6 +129,5 @@ public class Student {
     		int index = courses.indexOf(course);
             courses.remove(index);
     	}
-		//course.removeStudent(this);
     }
 }

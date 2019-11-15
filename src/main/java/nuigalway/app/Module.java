@@ -74,7 +74,6 @@ public class Module {
 
     public void addCourses(ArrayList<CourseProgramme> newCourses) {
     	for (CourseProgramme newCourse : newCourses) {
-    		newCourse.addModule(this);
             if (courses.contains(newCourse)) {
                 throw new RuntimeException("A courses is already registered for this module");
             } else {
@@ -89,7 +88,6 @@ public class Module {
         } else {
         	courses.add(course);
         }
-    	course.addModule(this);
     }
 
     public void removeCourse(CourseProgramme course) {
@@ -99,7 +97,6 @@ public class Module {
     		int index = courses.indexOf(course);
             courses.remove(index);
     	}
-		course.removeModule(this);
     }
 	
 }
