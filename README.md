@@ -1,2 +1,2 @@
 # SoftwareEngineering
-Java Student Enrollment System with JUnit testing & implemented with Shippable.
+Java Student Enrollment System with JUnit testing & integrated with Shippable.
