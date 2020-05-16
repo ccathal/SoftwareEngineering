@@ -11,87 +11,90 @@ import java.util.ArrayList;
 public class ModuleTest {
 	private Module firstModule;
 	private Module secondModule;
-    private static ArrayList<Student> students;
+	private static ArrayList<Student> students;
 
-    @Before
-    public void init() {
-        firstModule = new Module("Programming", "CT100");
-        secondModule = new Module("Programming2", "CT200");
-        
-        students = new ArrayList<>();
-        final LocalDate dob = LocalDate.of(1998, 10, 18);
-        students.add(new Student("Tom", "Talker", dob, "123456789"));
-        students.add(new Student("John", "Joker", dob, "123456788"));
-        students.add(new Student("Mary", "May", dob, "123456787"));
-        students.add(new Student("Lisa", "Linsie", dob, "123456786"));
-    }
+	@Before
+	public void init() {
+		firstModule = new Module("Programming", "CT100");
+		secondModule = new Module("Programming2", "CT200");
 
-    @Test
-    public void moduleRegistersStudent() {
-        firstModule.addStudent(students.get(0));
-        ArrayList<Module> mod = students.get(0).getModules();
-        assertTrue(mod.contains(firstModule));
-        assertTrue(!mod.contains(secondModule));
+		students = new ArrayList<>();
+		final LocalDate dob = LocalDate.of(1998, 10, 18);
+		students.add(new Student("Tom", "Talker", dob, "123456789"));
+		students.add(new Student("John", "Joker", dob, "123456788"));
+		students.add(new Student("Mary", "May", dob, "123456787"));
+		students.add(new Student("Lisa", "Linsie", dob, "123456786"));
+	}
 
-        secondModule.addStudent(students.get(0));
-        ArrayList<Module> mod2 = students.get(0).getModules();
-        assertTrue(mod2.contains(firstModule));
-        assertTrue(mod2.contains(secondModule));
-    }
+	@Test
+	public void moduleRegistersStudent() {
+		firstModule.addStudent(students.get(0));
+		ArrayList<Module> mod = students.get(0).getModules();
+		assertTrue(mod.contains(firstModule));
+		assertTrue(!mod.contains(secondModule));
 
-    @Test
-    public void getModuleEnrollments() {
-        firstModule.addStudent(students.get(0));
-        firstModule.addStudent(students.get(1));
-        firstModule.addStudent(students.get(2));
-        
-        ArrayList<Student> enrolledStudents = firstModule.getStudents();
-        String studentList = "";
-        for (Student student : enrolledStudents) {
-            studentList += student.getFname() + " " + student.getLname() + ", ";
-        }
+		secondModule.addStudent(students.get(0));
+		ArrayList<Module> mod2 = students.get(0).getModules();
+		assertTrue(mod2.contains(firstModule));
+		assertTrue(mod2.contains(secondModule));
+	}
 
-        assertTrue(studentList.contains("Tom Talker"));
-        assertTrue(studentList.contains("Mary May"));
-        assertTrue(studentList.contains("John Joker"));
-        assertTrue(!studentList.contains("Lisa Linsie"));
-    }
+	@Test
+	public void getModuleEnrollments() {
+		firstModule.addStudent(students.get(0));
+		firstModule.addStudent(students.get(1));
+		firstModule.addStudent(students.get(2));
 
-    @Test
-    public void addDuplicateStudentException() throws RuntimeException {
-        assertEquals(firstModule.getStudents().size(), 0);
-        firstModule.addStudent(students.get(0));
-        assertEquals(firstModule.getStudents().size(), 1);
-        try {
-            firstModule.addStudent(students.get(0));
-            fail("Student already registered for this module");
-        } catch (RuntimeException ignored) {}
-    }
+		ArrayList<Student> enrolledStudents = firstModule.getStudents();
+		String studentList = "";
+		for (Student student : enrolledStudents) {
+			studentList += student.getFname() + " " + student.getLname() + ", ";
+		}
 
-    @Test
-    public void removeAddStudents() throws RuntimeException {
-        firstModule.addStudents(students);
-        assertEquals(firstModule.getStudents().size(), 4);
+		assertTrue(studentList.contains("Tom Talker"));
+		assertTrue(studentList.contains("Mary May"));
+		assertTrue(studentList.contains("John Joker"));
+		assertTrue(!studentList.contains("Lisa Linsie"));
+	}
 
-        firstModule.removeStudent(students.get(3));
-        assertEquals(firstModule.getStudents().size(), 3);
-        
-        try {
-            firstModule.addStudent(students.get(0));
-            fail("Student already registered for this module");
-        } catch (RuntimeException ignored) {}
-        
-        try {
-            firstModule.removeStudent(students.get(3));
-            fail("Student has not been registered for this module");
-        } catch (RuntimeException ignored) {}
-        System.out.println(firstModule.getStudents().size());
-        assertEquals(firstModule.getStudents().size(), 3);
+	@Test
+	public void addDuplicateStudentException() throws RuntimeException {
+		assertEquals(firstModule.getStudents().size(), 0);
+		firstModule.addStudent(students.get(0));
+		assertEquals(firstModule.getStudents().size(), 1);
+		try {
+			firstModule.addStudent(students.get(0));
+			fail("Student already registered for this module");
+		} catch (RuntimeException ignored) {
+		}
+	}
 
-        firstModule.removeStudent(students.get(0));
-        firstModule.removeStudent(students.get(1));
-        firstModule.removeStudent(students.get(2));
-        assertEquals(firstModule.getStudents().size(), 0);
-    }
+	@Test
+	public void removeAddStudents() throws RuntimeException {
+		firstModule.addStudents(students);
+		assertEquals(firstModule.getStudents().size(), 4);
+
+		firstModule.removeStudent(students.get(3));
+		assertEquals(firstModule.getStudents().size(), 3);
+
+		try {
+			firstModule.addStudent(students.get(0));
+			fail("Student already registered for this module");
+		} catch (RuntimeException ignored) {
+		}
+
+		try {
+			firstModule.removeStudent(students.get(3));
+			fail("Student has not been registered for this module");
+		} catch (RuntimeException ignored) {
+		}
+		System.out.println(firstModule.getStudents().size());
+		assertEquals(firstModule.getStudents().size(), 3);
+
+		firstModule.removeStudent(students.get(0));
+		firstModule.removeStudent(students.get(1));
+		firstModule.removeStudent(students.get(2));
+		assertEquals(firstModule.getStudents().size(), 0);
+	}
 
 }
